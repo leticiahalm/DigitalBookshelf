@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My digital Bookshelf</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <header>
+        <h1>My digital Bookshelf</h1>
+        <p>A little place for all my stories.</p>
+    </header>
+
+    <main>
+
+        <section class="bookshelf">
+
+            <div class="shelf" id="shelf"></div>
+
+        </section>
+
+        <button id="addBookButton">+ Add a book</button>
+
+<div class="modal" id="bookModal">
+
+    <div class="modal-content">
+
+        <button class="close-button" id="closeModal">x</button>
+
+        <h2>Add a book</h2>
+
+        <form id="bookForm">
+
+            <label for="bookTitle">Title</label>
+            <input type="text" id="bookTitle" required>
+
+            <label for="bookAuthor">Author</label>
+            <input type="text" id="bookAuthor" required>
+
+            <label for="bookPages">Number of pages</label>
+            <input type="number" id="bookPages" min="1" required>
+
+            <label for="bookGenre">Genre</label>
+            <input type="text" id="bookGenre" required>
+
+            <button type="submit">Add Book</button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<div class="modal" id="detailsModal">
+
+    <div class="modal-content">
+
+        <button class="close-button" id="closeDetails">x</button>
+
+        <h2 id="detailsTitle"></h2>
+
+        <div class="book-meta">
+            <p id="detailsAuthor"></p>
+            <p id="detailsGenre"></p>
+        </div>
+
+        <div class="progress-section">
+
+            <div class="progress-info">
+                <span>Reading progress</span>
+                <span id="progressText"></span>
+            </div>
+
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+
+        </div>
+
+        <label for="currentPage">Current page</label>
+
+        <input
+            type="number"
+            id="currentPage"
+            min="0"
+        >
+
+        <button id="updateProgress">
+            Update progress
+        </button>
+
+    </div>
+
+</div>
+
+    </main>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

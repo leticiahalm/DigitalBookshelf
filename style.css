@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Georgia, serif;
+    background: #f5eee6;
+    color: #3d3028;
+
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 50px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+header h1 {
+    font-size: 48px;
+    margin-bottom: 10px;
+}
+
+header p {
+    font-size: 18px;
+    opacity: 0.7;
+}
+
+
+/* bookshelf */
+
+.bookshelf {
+    width: 900px;
+    max-width: 90vw;
+}
+
+.shelf {
+    min-height: 300px;
+
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+
+    padding: 30px 30px 0;
+
+    border-bottom: 20px solid #6b4935;
+}
+
+
+/* books */
+
+.book {
+    width: 70px;
+    height: 230px;
+
+    background: #9c6f54;
+
+    border-radius: 4px 4px 0 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    transition: transform 0.2s ease;
+}
+
+.book:hover {
+    transform: translateY(-15px);
+}
+
+.book span {
+    color: white;
+
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+
+    font-size: 16px;
+}
+
+/* Genre colors */
+
+.book.fantasy {
+    background: #9b8ab8;
+}
+
+.book.romance {
+    background: #d9899f;
+}
+
+.book.science-fiction {
+    background: #7195b8;
+}
+
+.book.mystery {
+    background: #6f9b88;
+}
+
+.book.thriller {
+    background: #c9895c;
+}
+
+.book.horror {
+    background: #6f6678;
+}
+
+.book.crime {
+    background: #8a7770;
+}
+
+.book.dark-romance {
+    background: #8f5366;
+}
+
+.book.historical-fiction {
+    background: #b59672;
+}
+
+.book.young-adult {
+    background: #83a6a0;
+}
+
+/* button */
+
+#addBookButton {
+    margin-top: 40px;
+
+    padding: 12px 24px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #6b4935;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+#addBookButton:hover {
+    opacity: 0.8;
+}
+
+/* Add Books modal */
+
+.modal {
+    display: none;
+
+    position: fixed;
+    inset: 0;
+
+    background: rgba(61, 48, 40, 0.4);
+
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    position: relative;
+
+    width: 400px;
+    max-width: 90vw;
+
+    padding: 40px;
+
+    background: #fffaf5;
+
+    border-radius: 12px;
+
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+}
+
+.modal-content h2 {
+    margin-bottom: 25px;
+}
+
+.close-button {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+
+    border: none;
+    background: none;
+
+    font-size: 28px;
+
+    cursor: pointer;
+}
+
+
+/* add books form */
+
+#bookForm {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+#bookForm label {
+    margin-top: 10px;
+
+    font-size: 14px;
+}
+
+#bookForm input {
+    padding: 10px;
+
+    border: 1px solid #cdbeb2;
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+#bookForm button {
+    margin-top: 20px;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #6b4935;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+/* book details */
+
+.book-meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 30px;
+}
+
+#detailsAuthor {
+    margin: 0;
+    opacity: 0.7;
+}
+
+#detailsGenre {
+    margin: 0;
+    padding: 6px 12px;
+
+    background: #e8d8ca;
+    color: #6b4935;
+
+    border-radius: 20px;
+
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.progress-section {
+    margin-bottom: 25px;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 12px;
+
+    background: #e2d5ca;
+
+    border-radius: 10px;
+
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+
+    background: #6b4935;
+
+    border-radius: 10px;
+
+    transition: width 0.3s ease;
+}
+
+#detailsModal label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+}
+
+#currentPage {
+    width: 100%;
+
+    padding: 10px;
+
+    border: 1px solid #cdbeb2;
+    border-radius: 6px;
+
+    font-size: 16px;
+}
+
+#updateProgress {
+    width: 100%;
+
+    margin-top: 15px;
+
+    padding: 12px;
+
+    border: none;
+    border-radius: 8px;
+
+    background: #6b4935;
+    color: white;
+
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+/* Drag and drop */
+
+.book {
+    cursor: grab;
+}
+
+.book:active {
+    cursor: grabbing;
+}
+
+.book.dragging {
+    opacity: 0.5;
+    transform: translateY(-15px);
+}
