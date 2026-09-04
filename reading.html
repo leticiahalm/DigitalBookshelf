@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reading Mode</title>
+
+    <link rel="stylesheet" href="reading.css">
+</head>
+
+<body>
+
+    <main class="reading-screen">
+
+    <audio id="ambientMusic" loop>
+    <source src="audio/ambience-sound1.mp3" type="audio/mp3">
+    </audio>
+
+        <div class="reading-content">
+
+            <div class="clock" id="clock">
+                00:00
+            </div>
+
+            <div class="reading-time">
+
+                <span>Reading for</span>
+
+                <strong id="readingTimer">
+                    00:00
+                </strong>
+
+            </div>
+
+            <button id="backButton">
+                ← Back to bookshelf
+            </button>
+
+            <button id="musicButton">
+                ♫ Play music
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <script src="reading.js"></script>
+
+</body>
+
+</html>

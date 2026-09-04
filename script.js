@@ -1,7 +1,12 @@
-const shelf = document.getElementById("shelf");
+// Elements for the bookshelf
+
+const shelf1 = document.getElementById("shelf1");
+const shelf2 = document.getElementById("shelf2");
+const shelf3 = document.getElementById("shelf3");
 
 
 // Elements for the add-book modal
+
 const addBookButton = document.getElementById("addBookButton");
 const bookModal = document.getElementById("bookModal");
 const closeModal = document.getElementById("closeModal");
@@ -9,12 +14,14 @@ const bookForm = document.getElementById("bookForm");
 
 
 // Elements for the book search
+
 const bookSearch = document.getElementById("bookSearch");
 const searchButton = document.getElementById("searchButton");
 const searchResults = document.getElementById("searchResults");
 
 
 // Elements for the book details modal
+
 const detailsModal = document.getElementById("detailsModal");
 const closeDetails = document.getElementById("closeDetails");
 
@@ -30,14 +37,17 @@ const updateProgressButton = document.getElementById("updateProgress");
 
 
 // LocalStorage key
+
 const storageKey = "readingTrackerBooks";
 
 
 // Book spine images
+
 const genreImages = {
     "Fantasy": "images/book-spines/fantasy.png",
     "Romance": "images/book-spines/romance.png",
     "Science Fiction": "images/book-spines/science-fiction.png",
+    "Sci-fi": "images/book-spines/science-fiction.png",
     "Mystery": "images/book-spines/mystery.png",
     "Thriller": "images/book-spines/thriller.png",
     "Horror": "images/book-spines/horror.png",
@@ -49,6 +59,7 @@ const genreImages = {
 
 
 // Default books
+
 const defaultBooks = [
     {
         title: "The Hobbit",
@@ -82,6 +93,7 @@ const defaultBooks = [
 
 
 // Load saved books from localStorage
+
 const savedBooks = localStorage.getItem(storageKey);
 
 let books = savedBooks
@@ -90,10 +102,12 @@ let books = savedBooks
 
 
 // The currently selected book
+
 let selectedBook = null;
 
 
 // Save books to localStorage
+
 function saveBooks() {
 
     localStorage.setItem(
@@ -104,6 +118,7 @@ function saveBooks() {
 
 
 // Search for books using the Open Library API
+
 async function searchBooks() {
 
     const query = bookSearch.value.trim();
@@ -132,12 +147,12 @@ async function searchBooks() {
 
         searchResults.innerHTML =
             "Something went wrong. Please try again.";
-
     }
 }
 
 
 // Display search results
+
 function displaySearchResults(results) {
 
     searchResults.innerHTML = "";
@@ -171,7 +186,6 @@ function displaySearchResults(results) {
         } else {
 
             cover.style.display = "none";
-
         }
 
 
@@ -218,7 +232,6 @@ function displaySearchResults(results) {
 
             pages.textContent =
                 "Page count unknown";
-
         }
 
 
@@ -260,149 +273,222 @@ function displaySearchResults(results) {
 }
 
 
-// Display books on the shelf
+// Display books on the bookshelf
+
 function displayBooks() {
 
-    shelf.innerHTML = "";
-
-    books.forEach(book => {
-
-        const bookElement = document.createElement("div");
-
-        bookElement.classList.add("book");
+    shelf1.innerHTML = "";
+    shelf2.innerHTML = "";
+    shelf3.innerHTML = "";
 
 
-        // Add the genre-specific book spine
+    books.forEach((book, index) => {
 
-        if (genreImages[book.genre]) {
+        const bookElement = createBookElement(book);
 
-            bookElement.style.backgroundImage =
-                `url("${genreImages[book.genre]}")`;
 
+        // Divide books between the three shelves
+
+        if (index < 4) {
+
+            shelf1.appendChild(bookElement);
+
+        } else if (index < 8) {
+
+            shelf2.appendChild(bookElement);
+
+        } else {
+
+            shelf3.appendChild(bookElement);
         }
-
-
-        // Make the book draggable
-
-        bookElement.setAttribute("draggable", "true");
-
-
-        // Add the book title
-
-        const title = document.createElement("span");
-
-        title.textContent = book.title;
-
-        bookElement.appendChild(title);
-
-
-        // Open book details
-
-        bookElement.addEventListener("click", () => {
-
-            selectedBook = book;
-
-            detailsTitle.textContent = book.title;
-            detailsAuthor.textContent = `by ${book.author}`;
-            detailsGenre.textContent = book.genre;
-
-            currentPageInput.value = book.currentPage;
-
-            updateProgressDisplay();
-
-            detailsModal.style.display = "flex";
-
-        });
-
-
-        // Start dragging
-
-        bookElement.addEventListener("dragstart", () => {
-
-            bookElement.classList.add("dragging");
-
-        });
-
-
-        // Stop dragging
-
-        bookElement.addEventListener("dragend", () => {
-
-            bookElement.classList.remove("dragging");
-
-            saveShelfOrder();
-
-        });
-
-
-        // Determine where the dragged book should be placed
-
-        bookElement.addEventListener("dragover", (event) => {
-
-            event.preventDefault();
-
-            const draggingBook =
-                document.querySelector(".dragging");
-
-            if (!draggingBook || draggingBook === bookElement) {
-                return;
-            }
-
-            const rect =
-                bookElement.getBoundingClientRect();
-
-            const mousePosition =
-                event.clientX - rect.left;
-
-
-            if (mousePosition < rect.width / 2) {
-
-                shelf.insertBefore(
-                    draggingBook,
-                    bookElement
-                );
-
-            } else {
-
-                shelf.insertBefore(
-                    draggingBook,
-                    bookElement.nextSibling
-                );
-
-            }
-
-        });
-
-
-        shelf.appendChild(bookElement);
 
     });
 }
 
 
-// Save the current shelf order
-function saveShelfOrder() {
+// Create a book element
 
-    const bookElements =
-        shelf.querySelectorAll(".book");
+function createBookElement(book) {
 
-    const newOrder = [];
+    const bookElement = document.createElement("div");
 
-    bookElements.forEach(bookElement => {
+    bookElement.classList.add("book");
 
-        const title =
-            bookElement.querySelector("span").textContent;
 
-        const book =
-            books.find(book => book.title === title);
+    // Add the genre-specific book spine
 
-        if (book) {
+    if (genreImages[book.genre]) {
 
-            newOrder.push(book);
+        bookElement.style.backgroundImage =
+            `url("${genreImages[book.genre]}")`;
+    }
 
+
+    // Make the book draggable
+
+    bookElement.setAttribute("draggable", "true");
+
+
+    // Add the book title
+
+    const title = document.createElement("span");
+
+    title.textContent = book.title;
+
+    bookElement.appendChild(title);
+
+
+    // Open book details
+
+    bookElement.addEventListener("click", () => {
+
+        selectedBook = book;
+
+        detailsTitle.textContent = book.title;
+        detailsAuthor.textContent = `by ${book.author}`;
+        detailsGenre.textContent = book.genre;
+
+        currentPageInput.value = book.currentPage;
+
+        updateProgressDisplay();
+
+        detailsModal.style.display = "flex";
+    });
+
+
+    // Start dragging
+
+    bookElement.addEventListener("dragstart", () => {
+
+        bookElement.classList.add("dragging");
+    });
+
+
+    // Stop dragging
+
+    bookElement.addEventListener("dragend", () => {
+
+        bookElement.classList.remove("dragging");
+
+        saveShelfOrder();
+    });
+
+
+    return bookElement;
+}
+
+
+// Drag and drop between shelves
+
+const shelves = [shelf1, shelf2, shelf3];
+
+shelves.forEach(shelf => {
+
+    shelf.addEventListener("dragover", event => {
+
+        event.preventDefault();
+
+        const draggingBook =
+            document.querySelector(".dragging");
+
+        if (!draggingBook) {
+            return;
+        }
+
+
+        const booksInShelf =
+            [...shelf.querySelectorAll(".book:not(.dragging)")];
+
+        const afterElement =
+            getDragAfterElement(shelf, event.clientX);
+
+
+        if (afterElement == null) {
+
+            shelf.appendChild(draggingBook);
+
+        } else {
+
+            shelf.insertBefore(
+                draggingBook,
+                afterElement
+            );
         }
 
     });
+
+});
+
+
+// Find the book that should come after the dragged book
+
+function getDragAfterElement(shelf, x) {
+
+    const bookElements =
+        [...shelf.querySelectorAll(".book:not(.dragging)")];
+
+    return bookElements.reduce(
+        (closest, child) => {
+
+            const box =
+                child.getBoundingClientRect();
+
+            const offset =
+                x - box.left - box.width / 2;
+
+
+            if (offset < 0 && offset > closest.offset) {
+
+                return {
+                    offset: offset,
+                    element: child
+                };
+
+            } else {
+
+                return closest;
+            }
+
+        },
+        {
+            offset: Number.NEGATIVE_INFINITY
+        }
+    ).element;
+}
+
+
+// Save the current shelf order
+
+function saveShelfOrder() {
+
+    const newOrder = [];
+
+
+    shelves.forEach(shelf => {
+
+        const bookElements =
+            shelf.querySelectorAll(".book");
+
+
+        bookElements.forEach(bookElement => {
+
+            const title =
+                bookElement.querySelector("span").textContent;
+
+
+            const book =
+                books.find(book => book.title === title);
+
+
+            if (book) {
+
+                newOrder.push(book);
+            }
+
+        });
+
+    });
+
 
     books = newOrder;
 
@@ -411,6 +497,7 @@ function saveShelfOrder() {
 
 
 // Update the reading progress
+
 function updateProgressDisplay() {
 
     const percentage =
@@ -425,10 +512,12 @@ function updateProgressDisplay() {
 
 
 // Display books when the page loads
+
 displayBooks();
 
 
 // Open the add-book modal
+
 addBookButton.addEventListener("click", () => {
 
     bookModal.style.display = "flex";
@@ -437,6 +526,7 @@ addBookButton.addEventListener("click", () => {
 
 
 // Close the add-book modal
+
 closeModal.addEventListener("click", () => {
 
     bookModal.style.display = "none";
@@ -445,9 +535,11 @@ closeModal.addEventListener("click", () => {
 
 
 // Add a new book
-bookForm.addEventListener("submit", (event) => {
+
+bookForm.addEventListener("submit", event => {
 
     event.preventDefault();
+
 
     const title =
         document.getElementById("bookTitle").value;
@@ -487,6 +579,7 @@ bookForm.addEventListener("submit", (event) => {
 
 
 // Update the reading progress
+
 updateProgressButton.addEventListener("click", () => {
 
     const newPage =
@@ -501,7 +594,6 @@ updateProgressButton.addEventListener("click", () => {
         alert("Please enter a valid page number.");
 
         return;
-
     }
 
 
@@ -515,6 +607,7 @@ updateProgressButton.addEventListener("click", () => {
 
 
 // Close the book details modal
+
 closeDetails.addEventListener("click", () => {
 
     detailsModal.style.display = "none";
@@ -523,16 +616,30 @@ closeDetails.addEventListener("click", () => {
 
 
 // Search for books
+
 searchButton.addEventListener("click", searchBooks);
 
 
 // Allow searching with the Enter key
-bookSearch.addEventListener("keydown", (event) => {
+
+bookSearch.addEventListener("keydown", event => {
 
     if (event.key === "Enter") {
 
         searchBooks();
 
     }
+
+});
+
+
+// Go to reading mode
+
+const goReadButton =
+    document.getElementById("goReadButton");
+
+goReadButton.addEventListener("click", () => {
+
+    window.location.href = "reading.html";
 
 });

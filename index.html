@@ -17,15 +17,35 @@
         <p>A little place for all my stories.</p>
     </header>
 
+
     <main>
+
+        <!-- Top buttons -->
+
+        <div class="top-buttons">
+
+            <button id="addBookButton">
+                + Add a book
+            </button>
+
+            <button id="goReadButton">
+                Go read
+            </button>
+
+        </div>
+
+
+        <!-- Bookshelf -->
 
         <section class="bookshelf">
 
-            <div class="shelf" id="shelf"></div>
+            <div class="shelf" id="shelf1"></div>
+
+            <div class="shelf" id="shelf2"></div>
+
+            <div class="shelf" id="shelf3"></div>
 
         </section>
-
-        <button id="addBookButton">+ Add a book</button>
 
 
         <!-- Add book modal -->
@@ -34,7 +54,9 @@
 
             <div class="modal-content">
 
-                <button class="close-button" id="closeModal">x</button>
+                <button class="close-button" id="closeModal">
+                    x
+                </button>
 
                 <h2>Add a book</h2>
 
@@ -49,7 +71,9 @@
 
                         <form id="bookForm">
 
-                            <label for="bookTitle">Title</label>
+                            <label for="bookTitle">
+                                Title
+                            </label>
 
                             <input
                                 type="text"
@@ -58,7 +82,9 @@
                             >
 
 
-                            <label for="bookAuthor">Author</label>
+                            <label for="bookAuthor">
+                                Author
+                            </label>
 
                             <input
                                 type="text"
@@ -79,7 +105,9 @@
                             >
 
 
-                            <label for="bookGenre">Genre</label>
+                            <label for="bookGenre">
+                                Genre
+                            </label>
 
                             <select id="bookGenre" required>
 

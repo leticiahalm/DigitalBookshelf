@@ -18,19 +18,69 @@ body {
     padding: 50px;
 }
 
+
+/* Header */
+
 header {
     text-align: center;
-    margin-bottom: 60px;
+
+    margin-bottom: 70px;
 }
 
 header h1 {
     font-size: 48px;
+
     margin-bottom: 10px;
 }
 
 header p {
     font-size: 18px;
+
     opacity: 0.7;
+}
+
+
+/* Top buttons */
+
+.top-buttons {
+    position: absolute;
+
+    top: 40px;
+    right: 50px;
+
+    display: flex;
+
+    gap: 10px;
+}
+
+#addBookButton,
+#goReadButton {
+    margin: 0;
+
+    padding: 12px 20px;
+
+    border: none;
+    border-radius: 8px;
+
+    color: white;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+}
+
+#addBookButton {
+    background: #6b4935;
+}
+
+#goReadButton {
+    background: #8f5366;
+}
+
+#addBookButton:hover,
+#goReadButton:hover {
+    opacity: 0.8;
 }
 
 
@@ -39,32 +89,79 @@ header p {
 .bookshelf {
     width: 900px;
     max-width: 90vw;
+
+    height: 900px;
+
+    margin: 0 auto;
+
+    position: relative;
+
+    background-image: url("images/bookshelf.png");
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
+
+/* Shelves */
+
 .shelf {
-    min-height: 300px;
+    position: absolute;
+
+    left: 8%;
+    width: 84%;
 
     display: flex;
     align-items: flex-end;
-    gap: 10px;
 
-    padding: 30px 30px 0;
+    gap: 0;
 
-    border-bottom: 20px solid #6b4935;
+    padding: 0 10px;
+
+    border: none;
+
+    background: transparent;
+}
+
+
+/* Top shelf */
+
+#shelf1 {
+    height: 330px;
+
+    bottom: 590px;
+}
+
+
+/* Middle shelf */
+
+#shelf2 {
+    height: 330px;
+
+    bottom: 375px;
+}
+
+
+/* Bottom shelf */
+
+#shelf3 {
+    height: 330px;
+
+    bottom: 160px;
 }
 
 
 /* Books */
 
 .book {
-    width: 70px;
-    height: 230px;
+    width: 60px;
+    height: 180px;
 
-    background-size: 100% 100%;
+    flex-shrink: 0;
+
+    background-size: 120% 100%;
     background-position: center;
     background-repeat: no-repeat;
-
-    border-radius: 4px 4px 0 0;
 
     display: flex;
     align-items: center;
@@ -79,83 +176,29 @@ header p {
     transform: translateY(-15px);
 }
 
+.book:active {
+    cursor: grabbing;
+}
+
+.book.dragging {
+    opacity: 0.5;
+
+    transform: translateY(-15px);
+}
+
 .book span {
     color: #f5eee6;
 
     writing-mode: vertical-rl;
     transform: rotate(180deg);
 
-    font-size: 14px;
+    font-size: 13px;
+
     text-align: center;
 
-    max-height: 180px;
+    max-height: 160px;
 
     overflow: hidden;
-}
-
-/* Genre colors */
-
-.book.fantasy {
-    background: #9b8ab8;
-}
-
-.book.romance {
-    background: #d9899f;
-}
-
-.book.science-fiction {
-    background: #7195b8;
-}
-
-.book.mystery {
-    background: #6f9b88;
-}
-
-.book.thriller {
-    background: #c9895c;
-}
-
-.book.horror {
-    background: #6f6678;
-}
-
-.book.crime {
-    background: #8a7770;
-}
-
-.book.dark-romance {
-    background: #8f5366;
-}
-
-.book.historical-fiction {
-    background: #b59672;
-}
-
-.book.young-adult {
-    background: #83a6a0;
-}
-
-
-/* Button */
-
-#addBookButton {
-    margin-top: 40px;
-
-    padding: 12px 24px;
-
-    border: none;
-    border-radius: 8px;
-
-    background: #6b4935;
-    color: white;
-
-    font-size: 16px;
-
-    cursor: pointer;
-}
-
-#addBookButton:hover {
-    opacity: 0.8;
 }
 
 
@@ -165,12 +208,15 @@ header p {
     display: none;
 
     position: fixed;
+
     inset: 0;
 
     background: rgba(61, 48, 40, 0.4);
 
     align-items: center;
     justify-content: center;
+
+    z-index: 100;
 }
 
 .modal-content {
@@ -179,13 +225,18 @@ header p {
     width: 850px;
     max-width: 90vw;
 
+    max-height: 90vh;
+
+    overflow-y: auto;
+
     padding: 40px;
 
     background: #fffaf5;
 
     border-radius: 12px;
 
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
+    box-shadow:
+        0 10px 40px rgba(0, 0, 0, 0.15);
 }
 
 .modal-content h2 {
@@ -433,6 +484,7 @@ header p {
     opacity: 0.7;
 }
 
+
 /* Book details */
 
 .book-meta {
@@ -543,22 +595,50 @@ header p {
 }
 
 
-/* Drag and drop */
-
-.book:active {
-    cursor: grabbing;
-}
-
-.book.dragging {
-    opacity: 0.5;
-
-    transform: translateY(-15px);
-}
-
-
 /* Responsive layout */
 
 @media (max-width: 700px) {
+
+    body {
+        padding: 30px 20px;
+    }
+
+    header {
+        margin-top: 60px;
+
+        margin-bottom: 40px;
+    }
+
+    header h1 {
+        font-size: 36px;
+    }
+
+    .top-buttons {
+        position: static;
+
+        justify-content: center;
+
+        margin-bottom: 30px;
+    }
+
+    .bookshelf {
+        width: 100%;
+        height: 100vw;
+
+        max-height: 700px;
+
+        max-width: 100%;
+    }
+
+    .shelf {
+        left: 8%;
+        width: 84%;
+    }
+
+    .book {
+        width: 60px;
+        height: 200px;
+    }
 
     .modal-content {
         padding: 30px;
@@ -566,6 +646,7 @@ header p {
 
     .add-book-layout {
         grid-template-columns: 1fr;
+
         gap: 30px;
     }
 
