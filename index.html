@@ -27,79 +27,227 @@
 
         <button id="addBookButton">+ Add a book</button>
 
-<div class="modal" id="bookModal">
 
-    <div class="modal-content">
+        <!-- Add book modal -->
 
-        <button class="close-button" id="closeModal">x</button>
+        <div class="modal" id="bookModal">
 
-        <h2>Add a book</h2>
+            <div class="modal-content">
 
-        <form id="bookForm">
+                <button class="close-button" id="closeModal">x</button>
 
-            <label for="bookTitle">Title</label>
-            <input type="text" id="bookTitle" required>
+                <h2>Add a book</h2>
 
-            <label for="bookAuthor">Author</label>
-            <input type="text" id="bookAuthor" required>
+                <div class="add-book-layout">
 
-            <label for="bookPages">Number of pages</label>
-            <input type="number" id="bookPages" min="1" required>
 
-            <label for="bookGenre">Genre</label>
-            <input type="text" id="bookGenre" required>
+                    <!-- Manual book form -->
 
-            <button type="submit">Add Book</button>
+                    <div class="manual-book">
 
-        </form>
+                        <h3>Add manually</h3>
 
-    </div>
+                        <form id="bookForm">
 
-</div>
+                            <label for="bookTitle">Title</label>
 
-<div class="modal" id="detailsModal">
+                            <input
+                                type="text"
+                                id="bookTitle"
+                                required
+                            >
 
-    <div class="modal-content">
 
-        <button class="close-button" id="closeDetails">x</button>
+                            <label for="bookAuthor">Author</label>
 
-        <h2 id="detailsTitle"></h2>
+                            <input
+                                type="text"
+                                id="bookAuthor"
+                                required
+                            >
 
-        <div class="book-meta">
-            <p id="detailsAuthor"></p>
-            <p id="detailsGenre"></p>
-        </div>
 
-        <div class="progress-section">
+                            <label for="bookPages">
+                                Number of pages
+                            </label>
 
-            <div class="progress-info">
-                <span>Reading progress</span>
-                <span id="progressText"></span>
+                            <input
+                                type="number"
+                                id="bookPages"
+                                min="1"
+                                required
+                            >
+
+
+                            <label for="bookGenre">Genre</label>
+
+                            <select id="bookGenre" required>
+
+                                <option
+                                    value=""
+                                    disabled
+                                    selected
+                                >
+                                    Select a genre
+                                </option>
+
+                                <option value="Fantasy">
+                                    Fantasy
+                                </option>
+
+                                <option value="Romance">
+                                    Romance
+                                </option>
+
+                                <option value="Science Fiction">
+                                    Science Fiction
+                                </option>
+
+                                <option value="Mystery">
+                                    Mystery
+                                </option>
+
+                                <option value="Thriller">
+                                    Thriller
+                                </option>
+
+                                <option value="Horror">
+                                    Horror
+                                </option>
+
+                                <option value="Crime">
+                                    Crime
+                                </option>
+
+                                <option value="Dark Romance">
+                                    Dark Romance
+                                </option>
+
+                                <option value="Historical Fiction">
+                                    Historical Fiction
+                                </option>
+
+                                <option value="Young Adult">
+                                    Young Adult
+                                </option>
+
+                            </select>
+
+
+                            <button type="submit">
+                                Add Book
+                            </button>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- Open Library search -->
+
+                    <div class="api-book-search">
+
+                        <h3>Search for a book</h3>
+
+                        <div class="search-row">
+
+                            <input
+                                type="text"
+                                id="bookSearch"
+                                placeholder="Enter a book title"
+                            >
+
+                            <button
+                                type="button"
+                                id="searchButton"
+                            >
+                                Search
+                            </button>
+
+                        </div>
+
+
+                        <div id="searchResults"></div>
+
+                    </div>
+
+                </div>
+
             </div>
 
-            <div class="progress-bar">
-                <div class="progress-fill" id="progressFill"></div>
+        </div>
+
+
+        <!-- Book details modal -->
+
+        <div class="modal" id="detailsModal">
+
+            <div class="modal-content">
+
+                <button
+                    class="close-button"
+                    id="closeDetails"
+                >
+                    x
+                </button>
+
+                <h2 id="detailsTitle"></h2>
+
+                <div class="book-meta">
+
+                    <p id="detailsAuthor"></p>
+
+                    <p id="detailsGenre"></p>
+
+                </div>
+
+
+                <div class="progress-section">
+
+                    <div class="progress-info">
+
+                        <span>
+                            Reading progress
+                        </span>
+
+                        <span id="progressText"></span>
+
+                    </div>
+
+
+                    <div class="progress-bar">
+
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+
+                    </div>
+
+                </div>
+
+
+                <label for="currentPage">
+                    Current page
+                </label>
+
+                <input
+                    type="number"
+                    id="currentPage"
+                    min="0"
+                >
+
+
+                <button id="updateProgress">
+                    Update progress
+                </button>
+
             </div>
 
         </div>
-
-        <label for="currentPage">Current page</label>
-
-        <input
-            type="number"
-            id="currentPage"
-            min="0"
-        >
-
-        <button id="updateProgress">
-            Update progress
-        </button>
-
-    </div>
-
-</div>
 
     </main>
+
 
     <script src="script.js"></script>
 
