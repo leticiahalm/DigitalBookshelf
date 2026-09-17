@@ -662,65 +662,415 @@ header p {
 
 /* Responsive layout */
 
-@media (max-width: 700px) {
+/* Tablets */
+
+@media (max-width: 900px) {
 
     body {
         padding: 30px 20px;
     }
 
-    header {
-        margin-top: 60px;
 
-        margin-bottom: 40px;
-    }
+    /* Header */
 
     header h1 {
-        font-size: 36px;
+        font-size: 42px;
     }
+
+    header p {
+        font-size: 16px;
+    }
+
+
+    /* Top buttons */
 
     .top-buttons {
         position: static;
 
         justify-content: center;
 
-        margin-bottom: 30px;
+        margin-top: 25px;
+        margin-bottom: 20px;
     }
+
+
+    /* Bookshelf */
 
     .bookshelf {
-        width: 100%;
-        height: 100vw;
+        width: 95vw;
+        max-width: 700px;
 
-        max-height: 700px;
+        height: auto;
+        aspect-ratio: 0.9 / 1;
 
-        max-width: 100%;
+        margin: 0 auto;
     }
+
+
+    /* Shelves */
 
     .shelf {
-        left: 8%;
+        left: 13%;
         width: 84%;
+
+        padding: 0 5px;
     }
+
+
+    /* Books */
 
     .book {
-        width: 60px;
-        height: 200px;
+        width: 30px;
+        height: 135px;
+
+        margin-right: 2px;
     }
 
+    .book span {
+        font-size: 9px;
+
+        max-height: 115px;
+    }
+
+
+    /* Modal */
+
     .modal-content {
+        width: 90vw;
+        max-height: 90vh;
+
         padding: 30px;
     }
 
     .add-book-layout {
-        grid-template-columns: 1fr;
-
         gap: 30px;
     }
 
     .manual-book {
+        padding-right: 25px;
+    }
+}
+
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    body {
+        padding: 20px 10px;
+    }
+
+
+    /* Header */
+
+    header {
+        margin-bottom: 10px;
+    }
+
+    header h1 {
+        font-size: 30px;
+
+        margin-bottom: 6px;
+    }
+
+    header p {
+        font-size: 13px;
+    }
+
+
+    /* Top buttons */
+
+    .top-buttons {
+        width: 100%;
+
+        display: flex;
+        justify-content: center;
+
+        gap: 8px;
+
+        margin-top: 15px;
+        margin-bottom: 10px;
+    }
+
+    #addBookButton,
+    #goReadButton {
+        padding: 9px 13px;
+
+        font-size: 13px;
+    }
+
+
+    /* Bookshelf */
+
+    .bookshelf {
+        width: 95vw;
+        max-width: 500px;
+
+        height: auto;
+
+        aspect-ratio: 0.9 / 1;
+
+        margin: 0 auto;
+    }
+
+
+    /* Shelves */
+
+    .shelf {
+        left: 13%;
+        width: 84%;
+
+        padding: 0 4px;
+    }
+
+
+    /* Top shelf */
+
+    #shelf1 {
+        height: 31%;
+        bottom: 63%;
+    }
+
+
+    /* Middle shelf */
+
+    #shelf2 {
+        height: 31%;
+        bottom: 41.2%;
+    }
+
+
+    /* Bottom shelf */
+
+    #shelf3 {
+        height: 31%;
+        bottom: 20%;
+    }
+
+
+    /* Books */
+
+    .book {
+        width: 21px;
+        height: 105px;
+
+        margin-right: 2px;
+
+        border-left-width: 1px;
+        border-right-width: 1px;
+    }
+
+    .book span {
+        font-size: 7px;
+
+        max-height: 87px;
+
+        letter-spacing: 0;
+    }
+
+    .book:hover {
+        transform: translateY(-5px);
+    }
+
+
+    /* Modal */
+
+    .modal-content {
+        width: calc(100vw - 20px);
+
+        max-height: 90vh;
+
+        padding: 25px 20px;
+
+        border-radius: 10px;
+    }
+
+    .modal-content h2 {
+        font-size: 23px;
+
+        margin-bottom: 20px;
+    }
+
+
+    /* Add book layout */
+
+    .add-book-layout {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+
+    .manual-book {
         padding-right: 0;
-        padding-bottom: 30px;
+        padding-bottom: 25px;
 
         border-right: none;
         border-bottom: 1px solid #d8c9bd;
     }
 
+    .manual-book h3,
+    .api-book-search h3 {
+        font-size: 18px;
+
+        margin-bottom: 15px;
+    }
+
+
+    /* Form */
+
+    #bookForm input,
+    #bookGenre {
+        padding: 10px;
+
+        font-size: 15px;
+    }
+
+
+    /* Search */
+
+    .search-row {
+        flex-direction: column;
+    }
+
+    .search-row button {
+        width: 100%;
+    }
+
+
+    /* Search results */
+
+    #searchResults {
+        max-height: 300px;
+    }
+
+    .search-result {
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .search-result img {
+        width: 45px;
+        height: 65px;
+    }
+
+    .search-result-info h3 {
+        font-size: 14px;
+    }
+
+    .search-result-info p {
+        font-size: 12px;
+    }
+
+
+    /* Book details */
+
+    .book-meta {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+        margin-bottom: 20px;
+    }
+
+    #detailsTitle {
+        font-size: 23px;
+    }
+
+    #detailsGenre {
+        font-size: 12px;
+    }
+
+    .progress-info {
+        font-size: 13px;
+    }
+
+    #currentPage {
+        font-size: 15px;
+    }
+
+    #updateProgress,
+    #deleteBookButton {
+        font-size: 15px;
+
+        padding: 11px;
+    }
+
+
+    /* Close button */
+
+    .close-button {
+        top: 10px;
+        right: 15px;
+
+        font-size: 25px;
+    }
+}
+
+
+/* Very small phones */
+
+@media (max-width: 400px) {
+
+    body {
+        padding: 15px 5px;
+    }
+
+
+    header h1 {
+        font-size: 27px;
+    }
+
+    header p {
+        font-size: 12px;
+    }
+
+
+    .top-buttons {
+        gap: 6px;
+    }
+
+    #addBookButton,
+    #goReadButton {
+        padding: 8px 11px;
+
+        font-size: 12px;
+    }
+
+
+    /* Bookshelf */
+
+    .bookshelf {
+        width: 96vw;
+
+        max-width: none;
+    }
+
+
+    /* Even smaller books */
+
+    .book {
+        width: 19px;
+        height: 95px;
+
+        margin-right: 1px;
+    }
+
+    .book span {
+        font-size: 6px;
+
+        max-height: 80px;
+    }
+
+
+    /* Modal */
+
+    .modal-content {
+        padding: 20px 15px;
+    }
+
+    .modal-content h2 {
+        font-size: 21px;
+    }
 }
