@@ -6,7 +6,11 @@
 
 body {
     font-family: Georgia, serif;
-    background: #f5eee6;
+    background-image: url("images/background.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
     color: #3d3028;
 
     min-height: 100vh;
@@ -24,7 +28,7 @@ body {
 header {
     text-align: center;
 
-    margin-bottom: 70px;
+    /*margin-bottom: 10px;*/
 }
 
 header h1 {
@@ -90,7 +94,7 @@ header p {
     width: 900px;
     max-width: 90vw;
 
-    height: 900px;
+    height: 1000px;
 
     margin: 0 auto;
 
@@ -108,7 +112,7 @@ header p {
 .shelf {
     position: absolute;
 
-    left: 8%;
+    left: 13%;
     width: 84%;
 
     display: flex;
@@ -129,7 +133,7 @@ header p {
 #shelf1 {
     height: 330px;
 
-    bottom: 590px;
+    bottom: 630px;
 }
 
 
@@ -138,7 +142,7 @@ header p {
 #shelf2 {
     height: 330px;
 
-    bottom: 375px;
+    bottom: 412px;
 }
 
 
@@ -147,17 +151,19 @@ header p {
 #shelf3 {
     height: 330px;
 
-    bottom: 160px;
+    bottom: 200px;
 }
 
 
 /* Books */
 
 .book {
-    width: 60px;
+    width: 40px;
     height: 180px;
 
     flex-shrink: 0;
+
+    position: relative;
 
     background-size: 120% 100%;
     background-position: center;
@@ -169,12 +175,38 @@ header p {
 
     cursor: grab;
 
-    transition: transform 0.2s ease;
+    /* Abstand zwischen den Büchern */
+    margin-right: 3px;
+
+    /* Buchrücken */
+    border-left: 2px solid rgba(255, 255, 255, 0.25);
+    border-right: 2px solid rgba(0, 0, 0, 0.35);
+
+    /* leichte Tiefe */
+    box-shadow:
+        2px 0 3px rgba(0, 0, 0, 0.25),
+        inset 1px 0 1px rgba(255, 255, 255, 0.15);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
 }
 
+
+/* Hover */
+
 .book:hover {
-    transform: translateY(-15px);
+    transform: translateY(-8px);
+
+    box-shadow:
+        4px 4px 8px rgba(0, 0, 0, 0.3),
+        inset 1px 0 1px rgba(255, 255, 255, 0.2);
+
+    z-index: 10;
 }
+
+
+/* Dragging */
 
 .book:active {
     cursor: grabbing;
@@ -182,9 +214,11 @@ header p {
 
 .book.dragging {
     opacity: 0.5;
-
-    transform: translateY(-15px);
+    transform: translateY(-8px);
 }
+
+
+/* Book title */
 
 .book span {
     color: #f5eee6;
@@ -192,13 +226,18 @@ header p {
     writing-mode: vertical-rl;
     transform: rotate(180deg);
 
-    font-size: 13px;
+    font-size: 12px;
 
     text-align: center;
 
-    max-height: 160px;
+    max-height: 150px;
 
     overflow: hidden;
+
+    text-shadow:
+        1px 1px 2px rgba(0, 0, 0, 0.7);
+
+    letter-spacing: 0.2px;
 }
 
 
@@ -592,6 +631,32 @@ header p {
 
 #updateProgress:hover {
     opacity: 0.8;
+}
+
+#deleteBookButton {
+    width: 100%;
+
+    margin-top: 10px;
+
+    padding: 12px;
+
+    border: 1px solid #8f5366;
+    border-radius: 8px;
+
+    background: transparent;
+    color: #8f5366;
+
+    font-family: Georgia, serif;
+    font-size: 16px;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+#deleteBookButton:hover {
+    background: #8f5366;
+    color: white;
 }
 
 

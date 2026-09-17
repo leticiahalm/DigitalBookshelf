@@ -35,6 +35,8 @@ const progressFill = document.getElementById("progressFill");
 const currentPageInput = document.getElementById("currentPage");
 const updateProgressButton = document.getElementById("updateProgress");
 
+const deleteBookButton = document.getElementById("deleteBookButton");
+
 
 // LocalStorage key
 
@@ -510,6 +512,37 @@ function updateProgressDisplay() {
         `${percentage}%`;
 }
 
+// Delete book
+
+deleteBookButton.addEventListener("click", () => {
+
+    if (!selectedBook) {
+        return;
+    }
+
+    const confirmDelete = confirm(
+        `Möchtest du "${selectedBook.title}" wirklich löschen?`
+    );
+
+    if (!confirmDelete) {
+        return;
+    }
+
+    // Remove the book from the books array
+    books = books.filter(book => book !== selectedBook);
+
+    // Save the updated bookshelf
+    saveBooks();
+
+    // Update the bookshelf
+    displayBooks();
+
+    // Close the details modal
+    detailsModal.style.display = "none";
+
+    // Reset selected book
+    selectedBook = null;
+});
 
 // Display books when the page loads
 
